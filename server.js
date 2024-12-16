@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-mongoose.connect("mongodb+srv://toanocchocute:toandeptrai@store.ec6vh.mongodb.net/?retryWrites=true&w=majority&appName=Store", {
+mongoose.connect("mongodb+srv://khang:khang123@discover.5xhr1.mongodb.net/?retryWrites=true&w=majority&appName=Discover", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {

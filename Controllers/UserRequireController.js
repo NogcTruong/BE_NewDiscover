@@ -3,13 +3,22 @@ const UserRequire = require("../models/userRequireModel");
 const UserRequireController = {
   async createUserRequire(req, res) {
     try {
-      const { userId, category, budget, totalDay, address, quantity } = req.body;
+      const { userId, category, budget, totalDay, location, quantity } =
+        req.body;
 
       // Validate required fields
-      if (!userId || !category || !budget || !totalDay || !address || !quantity) {
+      if (
+        !userId ||
+        !category ||
+        !budget ||
+        !totalDay ||
+        !location ||
+        !quantity
+      ) {
         return res.status(400).json({
           type: "error",
-          message: "All fields are required (userId, category, budget, totalDay, address, quantity)",
+          message:
+            "All fields are required (userId, category, budget, totalDay, location, quantity)",
         });
       }
 
@@ -28,10 +37,10 @@ const UserRequireController = {
         });
       }
 
-      if (typeof address !== "string") {
+      if (typeof location !== "string") {
         return res.status(400).json({
           type: "error",
-          message: "Address must be a string",
+          message: "Location must be a string",
         });
       }
 
@@ -41,7 +50,7 @@ const UserRequireController = {
         quantity,
         budget,
         totalDay,
-        address
+        location,
       });
 
       const savedUserRequire = await newUserRequire.save();

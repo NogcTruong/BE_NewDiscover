@@ -14,7 +14,7 @@ const UserRequireSchema = new Schema(
       type: [String],
       require: true,
     },
-    address: {
+    location: {
       type: String,
       require: true,
     },
