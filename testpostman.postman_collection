@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "307fb601-0715-4110-b557-7384014bf68f",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36787912"
+	},
+	"item": [
+		{
+			"name": "đăng kí",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "toannguyen2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "hoanganhfreelancer@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "09782308794",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/v1/auth/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "đăng nhập",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "toannguyen2",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/v1/auth/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lấy thông tin user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "aaaa eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmFjZDBiOTFjZmI1OTJhZWMzOTk5YiIsImlhdCI6MTczMDg1ODM2MCwiZXhwIjoxNzMwOTQ0NzYwfQ.xWNe-7D1FkG4ni4AAhNXBcpZN60ZVEdAadCcodpWF5A",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:1000/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "thêm đánh giá",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "aaaa eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MmFjZDBiOTFjZmI1OTJhZWMzOTk5YiIsImlhdCI6MTczMDg1ODM2MCwiZXhwIjoxNzMwOTQ0NzYwfQ.xWNe-7D1FkG4ni4AAhNXBcpZN60ZVEdAadCcodpWF5A",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "destination_id",
+							"value": "5557756788test",
+							"type": "text"
+						},
+						{
+							"key": "rating",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "review",
+							"value": "oce cc 1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1000/api/v1/review/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1000",
+					"path": [
+						"api",
+						"v1",
+						"review",
+						"add"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
