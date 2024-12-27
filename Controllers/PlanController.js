@@ -1,6 +1,7 @@
 const UserRequire = require("../models/userRequireModel");
 const Destination = require("../models/Destination");
 const mongoose = require("mongoose");
+const CreateSchedule = require("../models/CreateSchedule");
 
 const PlanController = {
   async createPlan(req, res) {
@@ -123,6 +124,68 @@ const PlanController = {
       res.status(500).json({
         type: "error",
         message: "An error occurred while creating the plan.",
+        error: error.message,
+      });
+    }
+  },
+
+  async saveSchedule(req, res) {
+    try {
+      const { userId, userRequireId, totalCost, quantity, selectedTrips } =
+        req.body;
+
+      // Validate input
+      if (!userId || !userRequireId || !Array.isArray(selectedTrips)) {
+        return res.status(400).json({
+          type: "error",
+          message: "Missing required fields",
+        });
+      }
+
+      // Format selectedTrips
+      const formattedTrips = selectedTrips.map((trip, index) => ({
+        name: trip.name || "",
+        category: trip.category || "",
+        price: trip.price || 0,
+        description: trip.description || "",
+        place: trip.place || "",
+        rating: trip.rating || 0,
+        location: trip.location || "",
+        open_hours: trip.open_hours || "",
+        close_hours: trip.close_hours || "",
+        transportation: trip.transportation || "",
+        image_url: Array.isArray(trip.image_url) ? trip.image_url : [],
+        distance: trip.distance || "",
+        service: trip.service || "",
+        type: trip.type || "",
+        totalTripCost: trip.totalTripCost || 0,
+        quantity: trip.quantity || 0,
+        ratingRange: trip.ratingRange || "",
+        dayNumber: Math.floor(index / 3) + 1, // Giả sử mỗi ngày có 3 hoạt động
+        timeSlot: (index % 3) + 1,
+      }));
+
+      // Create new schedule
+      const schedule = await CreateSchedule.create({
+        userId,
+        userRequireId,
+        totalCost,
+        quantity,
+        selectedTrips: formattedTrips,
+      });
+
+      return res.status(200).json({
+        type: "success",
+        data: {
+          scheduleId: schedule._id,
+          message: "Schedule saved successfully",
+        },
+      });
+    } catch (error) {
+      console.error("Save schedule error:", error);
+      return res.status(500).json({
+        type: "error",
+        message: "Failed to save schedule",
         error: error.message,
       });
     }
